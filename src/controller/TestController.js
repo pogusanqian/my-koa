@@ -12,6 +12,10 @@ class TestController {
   static getMyself(ctx) {
     ctx.body = ctx.query;
   }
+
+  static getBody(ctx) {
+    ctx.body = ctx.request.body;
+  }
 }
 
 module.exports = TestController;
