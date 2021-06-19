@@ -13,9 +13,9 @@ class FSUtil {
     // TODO 这里要不要采用闭包呢?
     function readNames(pathLocation) {
       const dirInfo = fs.readdirSync(pathLocation, {
-        withFileTypes: true
+        withFileTypes: true,
       });
-      dirInfo.forEach(item => {
+      dirInfo.forEach((item) => {
         const location = path.join(pathLocation, item.name);
         item.isFile() ? fileNameArr.push(location) : readNames(location);
       });
@@ -24,7 +24,6 @@ class FSUtil {
     readNames(dirLocation);
     return fileNameArr;
   }
-
 }
 
 module.exports = FSUtil;
