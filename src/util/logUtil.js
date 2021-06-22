@@ -8,7 +8,7 @@ log4js.configure({
     },
     dataFileOut: {
       type: 'dateFile',
-      filename: process.env.LoggerFilePath,
+      filename: process.env.LOGGER_FILE_PATH,
       layout: { type: 'colored' },
     },
   },
