@@ -1,3 +1,6 @@
+const StudentDao = require('../dao/StudentDao');
+const YearDao = require('../dao/YearDao');
+
 class TestController {
   static getText(ctx) {
     ctx.body = '你好, 世界';
@@ -15,6 +18,14 @@ class TestController {
 
   static getBody(ctx) {
     ctx.body = ctx.request.body;
+  }
+
+  static async getStudents(ctx) {
+    ctx.body = await StudentDao.getStudents();
+  }
+
+  static async getYears(ctx) {
+    ctx.body = await YearDao.getYears();
   }
 }
 

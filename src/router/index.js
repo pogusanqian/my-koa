@@ -5,8 +5,8 @@ const FSUtil = require('../util/FSUtil');
 router.prefix('/pogu/mykoa');
 
 // 加载所有的子路由
-FSUtil.getFilePathsAtDir(__dirname).filter((item) => item !== __filename).forEach((item) => {
-  router.use(require(item).routes());
-});
+FSUtil.getFilePathsAtDir(__dirname)
+  .filter(item => item !== __filename)
+  .forEach(item => router.use(require(item).routes()));
 
 module.exports = router;

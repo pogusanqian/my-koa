@@ -13,5 +13,7 @@ module.exports = {
     'global-require': 'off',
     'import/no-dynamic-require': 'off',
     'no-unused-expressions': 'off',
+    'arrow-parens': 'off',
+    'no-return-await': 'off',
   },
 };
