@@ -24,8 +24,8 @@ module.exports = sequelize => {
     },
     age: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: "0",
+      allowNull: true,
+      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -34,7 +34,7 @@ module.exports = sequelize => {
     sex: {
       type: DataTypes.ENUM('未知', '男', '女'),
       allowNull: false,
-      defaultValue: null,
+      defaultValue: "未知",
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -42,8 +42,8 @@ module.exports = sequelize => {
     },
     schoolId: {
       type: DataTypes.STRING(45),
-      allowNull: true,
-      defaultValue: null,
+      allowNull: false,
+      defaultValue: "",
       primaryKey: false,
       autoIncrement: false,
       comment: null,

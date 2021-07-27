@@ -7,10 +7,15 @@
     "start": "node ./src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "node",
+    "KOA",
+    "sequelize"
+  ],
+  "author": "pogusanqian",
   "license": "ISC",
   "dependencies": {
+    "cls-hooked": "^4.2.2",
     "dotenv": "^10.0.0",
     "koa": "^2.13.1",
     "koa-body": "^4.2.0",
@@ -18,7 +23,9 @@
     "log4js": "^6.3.0",
     "moment": "^2.29.1",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.6.5"
+    "react": "^17.0.2",
+    "sequelize": "^6.6.5",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "eslint": "^7.2.0",

@@ -15,5 +15,6 @@ module.exports = {
     'no-unused-expressions': 'off',
     'arrow-parens': 'off',
     'no-return-await': 'off',
+    'max-len': 'off',
   },
 };
