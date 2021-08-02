@@ -10,11 +10,17 @@ class TestController {
   }
 
   static getMyself(ctx) {
+    // ctx.query封装的是get的请求参数, koa自动封装的
     ctx.body = ctx.query;
   }
 
   static getBody(ctx) {
     ctx.body = ctx.request.body;
+  }
+
+  static student(ctx) {
+    // ctx.params封装的是restful风格的请求参数, 有koa-router封装
+    ctx.body = ctx.params;
   }
 }
 
