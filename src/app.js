@@ -11,6 +11,12 @@ app.use(loggerMiddleware);
 app.use(router.routes());
 app.use(router.allowedMethods());
 
+// 添加异常监听事件; koa的error事件好像只能处理同步的异常; 另外就是如果try了同步异常, 则不会触发error事件
+app.on('error', err => {
+  console.log('===============');
+  logUtil.error(err.stack);
+});
+
 app.listen(process.env.PORT, () => {
   console.info(`服务已经启动，访问：http://localhost:${process.env.PORT}`);
   logUtil.info(`服务已经启动，访问：http://localhost:${process.env.PORT}`);

@@ -15,6 +15,7 @@
   "author": "pogusanqian",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "cls-hooked": "^4.2.2",
     "dotenv": "^10.0.0",
     "koa": "^2.13.1",
