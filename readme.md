@@ -20,3 +20,27 @@
 
 > * 首字母统一小写
 > * 使用短划线分割, 如koa-body
+
+### 1.5 数据库命令规则
+
+> * 库名统一使用`db_`开头, 如db_school
+> * 表名统一使用`t_`开头, 如t_student
+> * 字段名通过一使用`f_`开头, 如f_name
+
+## 2. DataHub接口
+
+**这些接口都是属于内部接口, 需要传递token才能调用**
+
+### 2.1 Restful路径
+
+> GET: http://localhost:3000/mykoa/dbhub/{tableName}?f_age=23
+> POST: http://localhost:3000/mykoa/dbhub/{tableName}
+> PUT: http://localhost:3000/mykoa/dbhub/{tableName}/{id}
+> DELETE: http://localhost:3000/mykoa/dbhub/{tableName}/{id}
+
+### 2.2 GET请求获取参数
+
+* query参数是where条件, 可以不传
+
+  
+
