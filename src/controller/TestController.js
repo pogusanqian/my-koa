@@ -1,4 +1,5 @@
 const axios = require('axios');
+const Cookie = require('cookie');
 
 class TestController {
   static getText(ctx) {
@@ -49,16 +50,26 @@ class TestController {
   }
 
   static setCookie(ctx) {
-    ctx.cookies.set('ck1', 'liuqincai');
+    ctx.cookies.set('ck1', 'aaa');
     ctx.body = '设置cookie成功';
   }
 
   static getCookie(ctx) {
-    // 这里只是单独的获取了一个cookie
-    ctx.body = ctx.cookies.get('ck1');
-    // 直接从请求头中获取原生的cookie cookies ck1=liuqincai; ck2=aaa
-    const ss = ctx.cookies;
-    console.log('cookies', ctx.headers.cookie);
+    // 单独获取一个ck1, 并不能获取所有的cookie
+    const ck1 = ctx.cookies.get('ck1');
+    console.log(`ck1: ${ck1}`);
+    // 从请求头中获取cookies字符串报文, 然后在使用cookie模块, 序列化成对象;
+    // 注意koa内嵌的时cookies模块, 是不能一次性获取所有的cookie; 其实在项目中也不会一次性获取所有的cookie, koa内置的cookies模块就够了
+    console.log(ctx.headers.cookie);
+    const cookies = Cookie.parse(ctx.headers.cookie);
+    ctx.body = cookies;
+  }
+
+  static locationBaidu(ctx) {
+    // 默认的重定向时302
+    ctx.status = 301;
+    ctx.redirect('https://baidu.com');
+    ctx.body = '一会重定向到百度';
   }
 }
 
