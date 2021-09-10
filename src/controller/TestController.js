@@ -47,6 +47,19 @@ class TestController {
     });
     ctx.body = '异步异常';
   }
+
+  static setCookie(ctx) {
+    ctx.cookies.set('ck1', 'liuqincai');
+    ctx.body = '设置cookie成功';
+  }
+
+  static getCookie(ctx) {
+    // 这里只是单独的获取了一个cookie
+    ctx.body = ctx.cookies.get('ck1');
+    // 直接从请求头中获取原生的cookie cookies ck1=liuqincai; ck2=aaa
+    const ss = ctx.cookies;
+    console.log('cookies', ctx.headers.cookie);
+  }
 }
 
 module.exports = TestController;

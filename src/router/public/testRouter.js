@@ -10,5 +10,7 @@ testRouter.all('/restful/:dataBase/:tableName', ctx => TestController.student(ct
 testRouter.get('/syncError', ctx => TestController.syncError(ctx));
 testRouter.get('/asyncErrorAtPromise', ctx => TestController.asyncErrorAtPromise(ctx));
 testRouter.get('/asyncErrorAtSetTimeOut', ctx => TestController.asyncErrorAtSetTimeOut(ctx));
+testRouter.all('/setCookie', ctx => TestController.setCookie(ctx));
+testRouter.all('/getCookie', ctx => TestController.getCookie(ctx));
 
 module.exports = testRouter;
