@@ -21,7 +21,7 @@ class TestController {
     ctx.body = ctx.request.body;
   }
 
-  static student(ctx) {
+  static resetful(ctx) {
     // ctx.params封装的是restful风格的请求参数, 有koa-router封装
     ctx.body = ctx.params;
   }

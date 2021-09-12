@@ -45,7 +45,7 @@ class SQLUtil {
         obj[key] = JSON.stringify(value);
       }
     }
-    // 将开头和结尾的{}换成()
+    // 将开头和结尾的{}换成(), 另外这里还可以防止sql注入
     // return JSON.stringify(Object.values(obj)).replace(/^./, '(').replace(/.$/, ')');
     return `(${JSON.stringify(Object.values(obj)).slice(1, -1)})`;
   }
@@ -63,12 +63,13 @@ class SQLUtil {
   }
 
   /**
-   * 获取insert语句的字段名, 如INSERT INTO t_student getInsertSqlKeys(obj) VALUES getInsertSqlValues(data)
-   * @param obj
+   * 获取insert语句的字段名, 如INSERT INTO t_student getInsertSqlKeys(data) VALUES getInsertSqlValues(data)
+   * @param data 可能是Array类型, 也可能是Object类型
    * @returns {string}
    */
-  static getInsertSqlFileNames(obj) {
-    return `(${Object.keys(obj).toString()})`;
+  static getInsertSqlFileNames(data) {
+    const templateObj = Array.isArray(data) ? data[0] : data;
+    return `(${Object.keys(templateObj).toString()})`;
   }
 }
 

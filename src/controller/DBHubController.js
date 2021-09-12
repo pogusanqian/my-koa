@@ -5,6 +5,12 @@ class DBHubController {
     const { tableName } = ctx.params;
     ctx.body = await DBHubDao.getdata(tableName);
   }
+
+  static async insertDate(ctx) {
+    const { tableName } = ctx.params;
+    const data = ctx.request.body;
+    ctx.body = await DBHubDao.insertDate(tableName, data);
+  }
 }
 
 module.exports = DBHubController;

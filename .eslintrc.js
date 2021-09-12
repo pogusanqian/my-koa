@@ -14,7 +14,7 @@ module.exports = {
     'import/no-dynamic-require': 'off',
     'no-unused-expressions': 'off',
     'arrow-parens': 'off',
-    // 'no-return-await': 'off',
+    'no-return-await': 'off',
     // 'max-len': 'off',
     // 不要改变函数的入参, 加上这个规则之后, 大部分入参都要copy一份, 而且还要时神copy
     'no-param-reassign': 'off',
