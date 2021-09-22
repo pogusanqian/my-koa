@@ -20,5 +20,6 @@ module.exports = async (ctx, next) => {
     };
     logger.error(`${ctx.requestId}||错误信息: ${e.stack}`);
   }
+  // logger.info(typeof ctx.body);
   logger.info(`${ctx.requestId}||响应参数: ${JSON.stringify(ctx.body)}`);
 };
