@@ -74,11 +74,12 @@ class SQLUtil {
 
   /**
    * 获取 f_name=values(f_name), f_age=values(f_age)
-   * @param obj
+   * @param data
    * @returns {string}
    */
-  static getOnUpdateStr(obj) {
-    return Object.keys(obj).map(item => `${item}=values(${item})`).join();
+  static getOnUpdateStr(data) {
+    const templateObj = Array.isArray(data) ? data[0] : data;
+    return Object.keys(templateObj).map(item => `${item}=values(${item})`).join();
   }
 }
 

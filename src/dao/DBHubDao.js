@@ -30,7 +30,25 @@ class DBHubDao {
   static async insertOrUpdateByDublicateKey(tableName, date) {
     const sql = `INSERT INTO ${tableName} ${SQLUtil.getInsertSqlFileNames(date)}
         VALUES ${SQLUtil.getInsertSqlValues(date)}
-        ON DUPLICATE KEY UPDATE ${SQLUtil.getOnUpdateStr(date[0])};`;
+        ON DUPLICATE KEY UPDATE ${SQLUtil.getOnUpdateStr(date)};`;
+    return await sequelize.query(sql);
+  }
+
+  /**
+   * 使用replace into批量更新数据
+   * 使用replace into批量添加与更新是不会造成last_insert_id的自增
+   * 要求传过来的data元素属性必须包含数据表的所有列, 不然会造成数据的丢失
+   * @param tableName
+   * @param date
+   * @returns {Promise<[undefined, number]>}
+   */
+  static async insertOrUpdateByReplace(tableName, date) {
+    const filesArr = await sequelize.query(`DESC ${tableName}`, { type: QueryTypes.SELECT });
+    if (filesArr.length !== Object.keys(date[0]).length) {
+      throw Error('调用insertOrUpdateByReplace批量更新数据是, 传递的data元素属性必须包含数据表的所有列, 不然会造成数据的丢失');
+    }
+    const sql = `REPLACE INTO ${tableName} ${SQLUtil.getInsertSqlFileNames(date)}
+        VALUES ${SQLUtil.getInsertSqlValues(date)};`;
     return await sequelize.query(sql);
   }
 }
