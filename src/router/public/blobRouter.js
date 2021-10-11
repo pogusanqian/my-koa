@@ -1,8 +1,8 @@
 const testRouter = require('koa-router')();
-const CanvasController = require('../../controller/BlobController');
+const BlobController = require('../../controller/BlobController');
 
-testRouter.get('/getImg', ctx => CanvasController.getImg(ctx));
-testRouter.get('/getZip', ctx => CanvasController.getZip(ctx));
-testRouter.get('/getQRCodeZip', ctx => CanvasController.getQRCodeZip(ctx));
+testRouter.get('/getImg', ctx => BlobController.getImg(ctx));
+testRouter.get('/getZip', ctx => BlobController.getZip(ctx));
+testRouter.get('/getQRCodeZip', ctx => BlobController.getQRCodeZip(ctx));
 
 module.exports = testRouter;

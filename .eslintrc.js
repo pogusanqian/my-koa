@@ -16,9 +16,10 @@ module.exports = {
     'arrow-parens': 'off',
     'no-return-await': 'off',
     // 'max-len': 'off',
-    // 不要改变函数的入参, 加上这个规则之后, 大部分入参都要copy一份, 而且还要时神copy
+    // 不要改变函数的入参, 加上这个规则之后, 大部分入参都要copy一份, 而且还是深copy
     'no-param-reassign': 'off',
-    // JavaScript 有很多语言特性, 并不是每个人都喜欢所有这些特性; 您可能决定禁止使用try-catch或者class,或者您可能决定禁止使用in运算符;
+    // JavaScript 有很多语言特性, 并不是每个人都喜欢所有这些特性;
+    // 您可能决定禁止使用try-catch或者class,或者您可能决定禁止使用in运算符;
     'no-restricted-syntax': 'off',
   },
 };

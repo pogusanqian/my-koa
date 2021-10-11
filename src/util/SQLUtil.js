@@ -71,6 +71,15 @@ class SQLUtil {
     const templateObj = Array.isArray(data) ? data[0] : data;
     return `(${Object.keys(templateObj).toString()})`;
   }
+
+  /**
+   * 获取 f_name=values(f_name), f_age=values(f_age)
+   * @param obj
+   * @returns {string}
+   */
+  static getOnUpdateStr(obj) {
+    return Object.keys(obj).map(item => `${item}=values(${item})`).join();
+  }
 }
 
 module.exports = SQLUtil;
