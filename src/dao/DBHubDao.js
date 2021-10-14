@@ -3,6 +3,15 @@ const sequelize = require('./models');
 const SQLUtil = require('../util/SQLUtil');
 
 class DBHubDao {
+  /**
+   * 直接执行原生的sql
+   * @param sql
+   * @returns {Promise<[undefined, number]>}
+   */
+  static async doSQL(sql) {
+    return await sequelize.query(sql);
+  }
+
   static async getdata(tableName) {
     const sql = `SELECT * FROM ${tableName}`;
     return await sequelize.query(sql, { type: QueryTypes.SELECT });

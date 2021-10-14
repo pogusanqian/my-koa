@@ -1,5 +1,6 @@
 const axios = require('axios');
 const Cookie = require('cookie');
+const DBHubDao = require('../dao/DBHubDao');
 
 class TestController {
   static getText(ctx) {
@@ -70,6 +71,16 @@ class TestController {
     ctx.status = 301;
     ctx.redirect('https://baidu.com');
     ctx.body = '一会重定向到百度';
+  }
+
+  /**
+   * 根据定时器的时间来异步执行SQL, 目的是为了使第二个请求的SQL早于第一个请求的SQL
+   * 在JS针对于数据库数据安全, 其实是不用加锁的, 只需要将DOSQL的那一步进行等待即可
+   */
+  static doSQLInTimer(ctx) {
+    const { sql, time } = ctx.request.body;
+    setTimeout(() => DBHubDao.doSQL(sql), time);
+    ctx.body = '异步请求完成';
   }
 }
 

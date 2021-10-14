@@ -13,5 +13,6 @@ testRouter.get('/asyncErrorAtSetTimeOut', ctx => TestController.asyncErrorAtSetT
 testRouter.all('/setCookie', ctx => TestController.setCookie(ctx));
 testRouter.all('/getCookie', ctx => TestController.getCookie(ctx));
 testRouter.all('/locationBaidu', ctx => TestController.locationBaidu(ctx));
+testRouter.all('/doSQLInTimer', ctx => TestController.doSQLInTimer(ctx));
 
 module.exports = testRouter;

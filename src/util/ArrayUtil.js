@@ -40,12 +40,12 @@ class ArrayUtil {
       jsonArr.forEach((item2) => {
         if (item2[UNK] === UNKValue) item2[updateFiled] = updateValue;
       });
-      item.f_arr = JSON.stringify(jsonArr);
+      item[jsonFiled] = JSON.stringify(jsonArr);
     });
   }
 
   /**
-   * 修改数组中的json字段, 主要用于子表是json字段的情况
+   * 删除数组中的json字段, 主要用于子表是json字段的情况
    * @param arr,
    * @param UNK 表示的是arr[*].f_arr.f_id
    * @param UNKValue 表示的是arr[*].f_arr.f_id的值
@@ -56,7 +56,7 @@ class ArrayUtil {
     arr.forEach(item => {
       let jsonArr = item[jsonFiled] ? JSON.parse(item[jsonFiled]) : [];
       jsonArr = jsonArr.filter(item2 => (item2[UNK] !== UNKValue));
-      item.f_arr = JSON.stringify(jsonArr);
+      item[jsonArr] = JSON.stringify(jsonArr);
     });
   }
 }

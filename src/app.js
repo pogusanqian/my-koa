@@ -9,7 +9,7 @@ const logUtil = require('./util/logUtil');
 const app = new Koa();
 app.use(KoaBody());
 app.use(loggerMiddleware);
-// 访问静态资源的时候, router设置的跟路由/pogu/mykoa不要带
+// 设置静态资源的根目录是./src/static, 直接访问http://localhost:3000/imgs/美女1.jpg即可(router设置的跟路由pogu/mykoa不用写)
 app.use(koaStatic(`${__dirname}/static`));
 app.use(router.routes());
 app.use(router.allowedMethods());
