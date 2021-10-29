@@ -90,6 +90,20 @@ class BlobController {
     ctx.body = await zip.generateNodeStream({ type: 'nodebuffer', streamFiles: true });
     console.timeEnd('oneTime');
   }
+
+  /**
+   * 上传文本文件, 并处理后下载
+   * @param ctx
+   * @returns {Promise<void>}
+   */
+  static async uploadTxtFile(ctx) {
+    // koa-body组件, 会自动将文本文件解析到req.body属性中; 如果是json文本, 还会进行parse解析, 文本不规范, 还会报错
+    // 注意这个组件只能解析单文本上传, 如果是multipart/form-data类型的就不在支持解析了
+    // 如果想解析multipart/form-data类型, 需要使用koa-multer
+    const data = ctx.request.body;
+    ctx.set('Content-disposition', `attachment; filename=${Date.now()}.txt`);
+    ctx.body = JSON.stringify(data);
+  }
 }
 
 module.exports = BlobController;
