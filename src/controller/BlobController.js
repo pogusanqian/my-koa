@@ -104,6 +104,22 @@ class BlobController {
     ctx.set('Content-disposition', `attachment; filename=${Date.now()}.txt`);
     ctx.body = JSON.stringify(data);
   }
+
+  /**
+   * 这个multer设置是保存到了内存中
+   * @param ctx
+   * @returns {Promise<void>}
+   */
+  static async uploadOneImg(ctx) {
+    console.log(ctx.files);
+    ctx.type = 'image/png';
+    ctx.body = ctx.files[0].buffer;
+  }
+
+  static async uploadFileds(ctx) {
+    console.log(ctx.files);
+    ctx.body = '请求成功';
+  }
 }
 
 module.exports = BlobController;
