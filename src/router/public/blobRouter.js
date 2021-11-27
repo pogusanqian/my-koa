@@ -28,5 +28,8 @@ testRouter.get('/getQRCodeZip', ctx => BlobController.getQRCodeZip(ctx));
 testRouter.all('/uploadTxtFile', ctx => BlobController.uploadTxtFile(ctx));
 testRouter.all('/uploadOneImg', upload1.any(), ctx => BlobController.uploadOneImg(ctx));
 testRouter.all('/uploadFileds', upload2.any(), ctx => BlobController.uploadFileds(ctx));
+testRouter.all('/uploadZipImgs', upload1.any(), ctx => BlobController.uploadZipImgs(ctx));
+testRouter.all('/mkDir', upload1.any(), ctx => BlobController.mkDir(ctx));
+testRouter.all('/getZipImgs', upload1.any(), ctx => BlobController.getZipImgs(ctx));
 
 module.exports = testRouter;

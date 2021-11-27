@@ -1,9 +1,11 @@
 const fs = require('fs');
+const path = require('path');
 const Images = require('images');
 const JSZip = require('jszip');
 const TextToSVG = require('text-to-svg');
 const SvgToPng = require('svg2png');
 const ArrayUtil = require('../util/ArrayUtil');
+const JSZipUtil = require('../util/JSZipUtil');
 
 /**
  * 这种静态资源依然会打印日志
@@ -119,6 +121,46 @@ class BlobController {
   static async uploadFileds(ctx) {
     console.log(ctx.files);
     ctx.body = '请求成功';
+  }
+
+  /**
+   * 创建目录, 主要区分一下路径的区别
+   * @param ctx
+   * @returns {Promise<void>}
+   */
+  static async mkDir(ctx) {
+    fs.mkdirSync('/haha1'); // 根路径是磁盘的根路径, 直接在D盘下创建了目录
+    fs.mkdirSync('./haha2'); // 相对路径就是我们的项目启动路径(是在my-koa目录下使用了node src/app.js),
+    fs.mkdirSync(path.join(__dirname, '../static', 'haha3')); // 根据dirname拼接绝对路径
+    ctx.body = '请求成功';
+  }
+
+  /**
+   * 上传zip文件, 并直接在程序中解压
+   * @param ctx
+   * @returns {Promise<void>}
+   */
+  static async uploadZipImgs(ctx) {
+    const zip = new JSZip();
+    // 解压文件到指定目录(现在上传的文件是保存在缓存中的)
+    const data = await zip.loadAsync(ctx.files[0].buffer);
+    await JSZipUtil.unzip(data, path.join(__dirname, '../static'));
+    ctx.body = '请求成功';
+  }
+
+  /**
+   * 获取压缩包中的imgs土拍你
+   * @param ctx
+   * @returns {Promise<void>}
+   */
+  static async getZipImgs(ctx) {
+    const zip = new JSZip();
+    const data = await zip.loadAsync(ctx.files[0].buffer);
+    const zipFiles = data.files;
+    const key = Object.keys(zipFiles).find(item => !zipFiles[item].dir); // 过滤出任意一张图片
+    const buffer = await zipFiles[key].async('nodebuffer');
+    ctx.type = 'image/png';
+    ctx.body = buffer;
   }
 }
 
