@@ -2,7 +2,7 @@ const router = require('koa-router')();
 const FSUtil = require('../util/FSUtil');
 
 // 设置router的前缀
-router.prefix('/pogu/mykoa');
+router.prefix('/mykoa');
 
 // 加载所有的子路由
 FSUtil.getFilePathsAtDir(__dirname)
