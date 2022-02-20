@@ -5,6 +5,21 @@ class StudentController {
     ctx.body = await StudentDao.getStudent();
   }
 
+  /**
+   * 异步获取学生信息, 这种写法客户端获取不到任何信息的, ctx是一个全局的上下文
+   * A请求不用ctx, 便会被B请求获取ctx上下文
+   * @param {*} ctx 
+   */
+  static getStudentSync(ctx) {
+    StudentDao.getStudent()
+      .then(data => {
+        console.log("data:==========", data)
+        ctx.body = data;
+      }).catch(err => {
+        console.error(err);
+      });
+  }
+
   static async transactionByNoHosting(ctx) {
     ctx.body = await StudentDao.transactionByNoHosting(ctx.request.body);
   }
