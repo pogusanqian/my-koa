@@ -7,7 +7,8 @@ const loggerMiddleware = require('./middlewares/loggerMiddleware');
 const logUtil = require('./util/logUtil');
 
 const app = new Koa();
-app.use(KoaBody());
+ // 设置可以接受form-data表单
+app.use(KoaBody({ multipart: true}));
 app.use(loggerMiddleware);
 // 设置静态资源的根目录是./src/static, 直接访问http://localhost:3000/imgs/美女1.jpg即可(router设置的跟路由pogu/mykoa不用写)
 app.use(koaStatic(`${__dirname}/static`));

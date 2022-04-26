@@ -19,7 +19,11 @@ class TestController {
   }
 
   static getBody(ctx) {
-    ctx.body = ctx.request.body;
+    // 由koa-body组件进行了封装参数, 可以获取表单和JSON等body参数
+    ctx.body = {
+      body: ctx.request.body,
+      files: ctx.request.files // 注意流参数是放到了ctx.request.files中
+    };
   }
 
   static resetful(ctx) {
