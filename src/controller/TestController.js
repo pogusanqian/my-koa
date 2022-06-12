@@ -86,6 +86,16 @@ class TestController {
     setTimeout(() => DBHubDao.doSQL(sql), time);
     ctx.body = '异步请求完成';
   }
+
+  /**
+   * 动态数据的缓存, 不能直接在浏览器的url中访问(浏览器做了设置), 可以在html中发送axios请求
+   * @param {*} ctx 
+   */
+  static cache(ctx) {
+    ctx.set('Access-Control-Allow-Origin', '*');
+    ctx.set('Cache-Control', 'max-age=10000');
+    ctx.body = 'Hello Koa';
+  }
 }
 
 module.exports = TestController;

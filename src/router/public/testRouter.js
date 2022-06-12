@@ -14,5 +14,6 @@ testRouter.all('/setCookie', ctx => TestController.setCookie(ctx));
 testRouter.all('/getCookie', ctx => TestController.getCookie(ctx));
 testRouter.all('/locationBaidu', ctx => TestController.locationBaidu(ctx));
 testRouter.all('/doSQLInTimer', ctx => TestController.doSQLInTimer(ctx));
+testRouter.all('/cache', ctx => TestController.cache(ctx));
 
 module.exports = testRouter;
