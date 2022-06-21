@@ -96,6 +96,26 @@ class TestController {
     ctx.set('Cache-Control', 'max-age=10000');
     ctx.body = 'Hello Koa';
   }
+
+
+  /**
+   * 通过status设置了响应码, 通过body属性设置了响应值(如果使用axios发送请求, 可以err.response.data获取body值)
+   * status的默认值是200, 如果整个请求中抛出了异常, 并且没有被捕捉, 那么koa会自动将状态码设置成500
+   * 
+   * @param {*} ctx 
+   */
+  static getStateCode(ctx) {
+    ctx.status = 500;
+    ctx.body = { name: '张三', age: 23};
+  }
+
+  /**
+   * 抛出异常的时候, logger组件就不要try捕捉异常了; 如果异常信息被try捕捉, 那么koa就捕捉不到这个异常, 返回给浏览器的状态码就是200, 是一个成功的相应
+   * @param {*} ctx 
+   */
+  static getStateCodeByThrow(ctx) {
+    ctx.throw(400, '我的异常');
+  }
 }
 
 module.exports = TestController;
