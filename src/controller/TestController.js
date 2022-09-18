@@ -1,6 +1,7 @@
 const axios = require('axios');
 const Cookie = require('cookie');
 const DBHubDao = require('../dao/DBHubDao');
+let num = 10000;
 
 class TestController {
   static getText(ctx) {
@@ -115,6 +116,20 @@ class TestController {
    */
   static getStateCodeByThrow(ctx) {
     ctx.throw(400, '我的异常');
+  }
+
+  /**
+   * js是单线程处理num数据的, java是多线程处理num数据的
+   * koa服务器在创建http连接时, 不是先处理第一个请求之后, 再处理第二个请求
+   * 而是http1连接之后, 将controller放在回调函数中, 然后再创建第二个连接
+   * koa是可以创建多个连接, 只不过逻辑处理是放在回调函数中, 有js主线程(单线程)处理
+   * java中的每一个http连接都是线程, 这些线程并发处理逻辑
+   * @param {*} ctx 
+   */
+  static decrNum(ctx) {
+    num = num - 1;
+    console.log('===========', num)
+    ctx.body =num
   }
 }
 

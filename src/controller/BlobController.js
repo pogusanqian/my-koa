@@ -149,7 +149,7 @@ class BlobController {
   }
 
   /**
-   * 获取压缩包中的imgs土拍你
+   * 获取压缩包中的imgs图片
    * @param ctx
    * @returns {Promise<void>}
    */

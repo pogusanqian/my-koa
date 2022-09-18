@@ -17,5 +17,6 @@ testRouter.all('/doSQLInTimer', ctx => TestController.doSQLInTimer(ctx));
 testRouter.all('/cache', ctx => TestController.cache(ctx));
 testRouter.all('/getStateCode', ctx => TestController.getStateCode(ctx));
 testRouter.all('/getStateCodeByThrow', ctx => TestController.getStateCodeByThrow(ctx));
+testRouter.all('/decrNum', ctx => TestController.decrNum(ctx));
 
 module.exports = testRouter;

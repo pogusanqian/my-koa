@@ -6,18 +6,20 @@ class StudentController {
   }
 
   /**
-   * 异步获取学生信息, 这种写法客户端获取不到任何信息的, ctx是一个全局的上下文
-   * A请求不用ctx, 便会被B请求获取ctx上下文
+   * 异步获取学生信息, 这种写法客户端获取不到任何信息的
+   * 因为koa采用的时洋葱模型, ctx会直接返回给下一个组件, 但是我们ctx设置值是在回调函数中设置的, 所以ctx其实没有任何值
    * @param {*} ctx 
    */
   static getStudentSync(ctx) {
     StudentDao.getStudent()
       .then(data => {
+        console.log(ctx)
         console.log("data:==========", data)
         ctx.body = data;
       }).catch(err => {
         console.error(err);
       });
+      ctx.body = "Hello World"
   }
 
   static async transactionByNoHosting(ctx) {
