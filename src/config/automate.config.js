@@ -8,12 +8,12 @@ module.exports = {
     dialect: 'mysql',
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-    logging: false,
+    logging: true,
   },
   options: {
     type: 'js',
     dir: 'src/dao/models',
-    camelCase: true,
-    tables: ['t_student'],
+    camelCase: false,
+    tables: ['t_city_map', 't_province_map', 't_user'],
   },
 };

@@ -1,4 +1,4 @@
-// code状态嘛
+// code状态码
 module.exports = {
 
 };

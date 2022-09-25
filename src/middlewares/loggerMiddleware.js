@@ -9,7 +9,7 @@ module.exports = async (ctx, next) => {
   logger.info(`${ctx.requestId}||请求URL: ${ctx.URL}`);
   logger.info(`${ctx.requestId}||请求方法: ${ctx.method}`);
   logger.info(`${ctx.requestId}||请求头: ${JSON.stringify(ctx.header)}`);
-  logger.info(`${ctx.requestId}||请求Parms: ${JSON.stringify(ctx.query)}`);
+  logger.info(`${ctx.requestId}||请求qeury: ${JSON.stringify(ctx.query)}`);
   logger.info(`${ctx.requestId}||请求Body: ${JSON.stringify(ctx.request.body)}`);
   try {
     await next();
