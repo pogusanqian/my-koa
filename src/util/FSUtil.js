@@ -9,8 +9,6 @@ class FSUtil {
    */
   static getFilePathsAtDir(dirLocation) {
     const fileNameArr = [];
-
-    // TODO 这里要不要采用闭包呢?
     function readNames(pathLocation) {
       const dirInfo = fs.readdirSync(pathLocation, {
         withFileTypes: true,

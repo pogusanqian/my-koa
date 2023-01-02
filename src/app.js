@@ -4,23 +4,32 @@ const KoaBody = require('koa-body');
 const koaStatic = require('koa-static');
 const router = require('./router');
 const loggerMiddleware = require('./middlewares/loggerMiddleware');
+const errorHandlerMiddleware = require('./middlewares/errorHandlerMiddleware');
 const logUtil = require('./util/logUtil');
 const cors = require('koa2-cors');
 
 const app = new Koa();
+
+// 设置跨域组件
 app.use(cors({
   origin: "*",
   maxAge: 2592000,
   credentials: true
 }));
-// 设置可以接受form-data表单
+
+// 引用form表单解析组件
 app.use(KoaBody({ multipart: true }));
+
+// 引用异常处理组件
+app.use(errorHandlerMiddleware);
+
+// 引用日志组件
 app.use(loggerMiddleware);
-// 设置静态资源的根目录是./src/static, 直接访问http://localhost:3000/imgs/美女1.jpg即可(router设置的跟路由pogu/mykoa不用写)
-app.use(koaStatic(`${__dirname}/static`, { maxage: 30 * 60 * 1000 }));
+
+
+// 配置路由组件
 app.use(router.routes());
 app.use(router.allowedMethods());
-
 
 // 添加异常监听事件; koa的error事件好像只能处理同步的异常; 另外就是如果try了同步异常, 则不会触发error事件
 app.on('error', err => logUtil.error(err.stack));

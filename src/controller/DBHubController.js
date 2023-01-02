@@ -1,11 +1,9 @@
 const DBHubDao = require('../dao/DBHubDao');
 
+/**
+ * DBHub接口可以实现通用表的增删改查
+ */
 class DBHubController {
-  static async doSQL(ctx) {
-    const { sql } = ctx.request.body;
-    ctx.body = await DBHubDao.doSQL(sql);
-  }
-
   static async getDate(ctx) {
     const { tableName } = ctx.params;
     ctx.body = await DBHubDao.getdata(tableName);
