@@ -20,7 +20,6 @@ class CityMapController {
   }
 
   static async updateCityMap(ctx) {
-    delete ctx.request.body.f_update_time;
     ctx.body = await CityMapDao.update(ctx.request.body);
   }
 

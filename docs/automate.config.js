@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 
 module.exports = {
   dbOptions: {
@@ -12,8 +12,8 @@ module.exports = {
   },
   options: {
     type: 'js',
-    dir: 'src/dao/models',
+    dir: 'models',
     camelCase: false,
-    tables: ['t_city_map', 't_province_map', 't_user'],
+    tables: ['t_city_map', 't_province_map'],
   },
 };

@@ -71,7 +71,10 @@ module.exports = sequelize => {
   const options = {
     tableName: "t_city_map",
     comment: "",
-    indexes: []
+    indexes: [],
+    timestamps: true,
+    createdAt: false,
+    updatedAt: 'f_update_time'
   };
   const TCityMapModel = sequelize.define("cityMapModel", attributes, options);
   return TCityMapModel;
