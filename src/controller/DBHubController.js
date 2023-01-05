@@ -1,25 +1,25 @@
-const DBHubDao = require('../dao/DBHubDao');
+const dbHubDao = require('../dao/dbHubDao');
 
 /**
  * DBHub接口可以实现通用表的增删改查
  */
 class DBHubController {
-  static async getDate(ctx) {
+  async getDate(ctx) {
     const { tableName } = ctx.params;
-    ctx.body = await DBHubDao.getdata(tableName);
+    ctx.body = await dbHubDao.getdata(tableName);
   }
 
-  static async insertDate(ctx) {
+  async insertDate(ctx) {
     const { tableName } = ctx.params;
     const data = ctx.request.body;
-    ctx.body = await DBHubDao.insertDate(tableName, data);
+    ctx.body = await dbHubDao.insertDate(tableName, data);
   }
 
-  static async insertOrUpdateByDublicateKey(ctx) {
+  async insertOrUpdateByDublicateKey(ctx) {
     const { tableName } = ctx.params;
     const data = ctx.request.body;
-    ctx.body = await DBHubDao.insertOrUpdateByDublicateKey(tableName, data);
+    ctx.body = await dbHubDao.insertOrUpdateByDublicateKey(tableName, data);
   }
 }
 
-module.exports = DBHubController;
+module.exports = new DBHubController();

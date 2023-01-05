@@ -1,28 +1,33 @@
-const CityMapDao = require('../dao/CityMapDao');
+const cityMapDao = require('../dao/cityMapDao');
+const resultUtil = require('../util/resultUtil');
 
 class CityMapController {
 
-  static async getCityMapByPage(ctx) {
+  async getCityMapByPage(ctx) {
     const { current, pageSize } = ctx.query;
     const cityMap = {
       offset: (Number(current) - 1) * Number(pageSize) || 0,
       limit: Number(pageSize) || 10,
     };
-    ctx.body = await CityMapDao.findAndCountAll(cityMap);
+    const data = await cityMapDao.findAndCountAll(cityMap);
+    ctx.body = resultUtil.success(data);
   }
 
-  static async deleteCityMapById(ctx) {
-    ctx.body = await CityMapDao.deleteById(ctx.request.body.f_id);
+  async deleteCityMapById(ctx) {
+    const data = await cityMapDao.deleteById(ctx.request.body.f_id);
+    ctx.body = resultUtil.success(data);
   }
 
-  static async addCityMap(ctx) {
-    ctx.body = await CityMapDao.create(ctx.request.body);
+  async addCityMap(ctx) {
+    const data = await cityMapDao.create(ctx.request.body);
+    ctx.body = resultUtil.success(data);
   }
 
-  static async updateCityMap(ctx) {
-    ctx.body = await CityMapDao.update(ctx.request.body);
+  async updateCityMap(ctx) {
+    const data =await cityMapDao.update(ctx.request.body);
+    ctx.body = resultUtil.success(data);
   }
 
 }
 
-module.exports = CityMapController;
+module.exports = new CityMapController();

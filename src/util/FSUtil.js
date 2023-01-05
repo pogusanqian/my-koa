@@ -7,7 +7,7 @@ class FSUtil {
    * @param dirLocation
    * @returns {[]}
    */
-  static getFilePathsAtDir(dirLocation) {
+  getFilePathsAtDir(dirLocation) {
     const fileNameArr = [];
     function readNames(pathLocation) {
       const dirInfo = fs.readdirSync(pathLocation, {
@@ -24,4 +24,4 @@ class FSUtil {
   }
 }
 
-module.exports = FSUtil;
+module.exports = new FSUtil();

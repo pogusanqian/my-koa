@@ -4,7 +4,7 @@ class ArrayUtil {
    * @param arr 源数组
    * @param size 内层数组的长度
    */
-  static oneToTwoDimen(arr, size) {
+   oneToTwoDimen(arr, size) {
     const copyArr = [...arr];
     const twoDimenArr = [];
     while (copyArr.length > size) {
@@ -15,4 +15,4 @@ class ArrayUtil {
   }
 }
 
-module.exports = ArrayUtil;
+module.exports = new ArrayUtil();

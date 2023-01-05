@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize');
-const FSUtil = require('../../util/FSUtil');
+const FSUtil = require('../../util/fsUtil');
 const cls = require('cls-hooked');
 
 const namespace = cls.createNamespace('clsNameSpace01');

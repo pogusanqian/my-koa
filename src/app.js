@@ -1,10 +1,9 @@
 require('dotenv').config();
 const Koa = require('koa');
 const KoaBody = require('koa-body');
-const koaStatic = require('koa-static');
 const router = require('./router');
 const loggerMiddleware = require('./middlewares/loggerMiddleware');
-const errorHandlerMiddleware = require('./middlewares/errorHandlerMiddleware');
+const errorMiddleware = require('./middlewares/errorMiddleware');
 const logUtil = require('./util/logUtil');
 const cors = require('koa2-cors');
 
@@ -17,15 +16,14 @@ app.use(cors({
   credentials: true
 }));
 
-// 引用form表单解析组件
+// 解析请求体数据
 app.use(KoaBody({ multipart: true }));
 
 // 引用异常处理组件
-app.use(errorHandlerMiddleware);
+app.use(errorMiddleware);
 
 // 引用日志组件
 app.use(loggerMiddleware);
-
 
 // 配置路由组件
 app.use(router.routes());

@@ -1,9 +1,9 @@
-const DBHubRouter = require('koa-router')();
-const DBHubController = require('../../controller/DBHubController');
+const dbHubRouter = require('koa-router')();
+const dbHubController = require('../../controller/dbHubController');
 
-DBHubRouter.all('/dbhub/doSQL', ctx => DBHubController.doSQL(ctx));
-DBHubRouter.get('/dbhub/:tableName', ctx => DBHubController.getDate(ctx));
-DBHubRouter.post('/dbhub/:tableName', ctx => DBHubController.insertDate(ctx));
-DBHubRouter.post('/dbhub/:tableName/insertOrUpdateByDublicateKey', ctx => DBHubController.insertOrUpdateByDublicateKey(ctx));
+dbHubRouter.all('/dbhub/doSQL', ctx => dbHubController.doSQL(ctx));
+dbHubRouter.get('/dbhub/:tableName', ctx => dbHubController.getDate(ctx));
+dbHubRouter.post('/dbhub/:tableName', ctx => dbHubController.insertDate(ctx));
+dbHubRouter.post('/dbhub/:tableName/insertOrUpdateByDublicateKey', ctx => dbHubController.insertOrUpdateByDublicateKey(ctx));
 
-module.exports = DBHubRouter;
+module.exports = dbHubRouter;

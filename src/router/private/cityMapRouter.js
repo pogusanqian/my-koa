@@ -1,9 +1,9 @@
-const StudentRouter = require('koa-router')();
-const CityMapController = require('../../controller/CityMapController');
+const studentRouter = require('koa-router')();
+const cityMapController = require('../../controller/cityMapController');
 
-StudentRouter.get('/getCityMapByPage', ctx => CityMapController.getCityMapByPage(ctx));
-StudentRouter.post('/deleteCityMapById', ctx => CityMapController.deleteCityMapById(ctx));
-StudentRouter.post('/addCityMap', ctx => CityMapController.addCityMap(ctx));
-StudentRouter.post('/updateCityMap', ctx => CityMapController.updateCityMap(ctx));
+studentRouter.get('/getCityMapByPage', ctx => cityMapController.getCityMapByPage(ctx));
+studentRouter.post('/deleteCityMapById', ctx => cityMapController.deleteCityMapById(ctx));
+studentRouter.post('/addCityMap', ctx => cityMapController.addCityMap(ctx));
+studentRouter.post('/updateCityMap', ctx => cityMapController.updateCityMap(ctx));
 
-module.exports = StudentRouter;
+module.exports = studentRouter;

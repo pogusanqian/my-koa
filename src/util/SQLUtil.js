@@ -6,7 +6,7 @@ class SQLUtil {
    * @param fieldArr
    * @returns {string}
    */
-  static getInValues(data, fieldArr) {
+  getInValues(data, fieldArr) {
     const result = data.map(item => {
       const arr = [];
       fieldArr.forEach(item2 => arr.push(item[item2]));
@@ -20,12 +20,12 @@ class SQLUtil {
    * @private
    */
   // eslint-disable-next-line no-underscore-dangle
-  static camelTo_(str) {
+  camelTo_(str) {
     return str.replace(/[A-Z]/g, match => `_${match.toLowerCase()}`);
   }
 
   // eslint-disable-next-line no-underscore-dangle
-  static _ToCamel(str) {
+  _ToCamel(str) {
     return str.replace(/_(\w)/g, (match, first) => first.toUpperCase());
   }
 
@@ -34,7 +34,7 @@ class SQLUtil {
    * @param obj
    * @returns {string}
    */
-  static getInsertSqlValuesByObject(obj) {
+  getInsertSqlValuesByObject(obj) {
     // eslint-disable-next-line no-restricted-syntax
     for (const [key, value] of Object.entries(obj)) {
       if (value === true) { // 针对数据库中没有boolean数据类型
@@ -55,7 +55,7 @@ class SQLUtil {
    * @param data  可以是object类型, 也可以是array类型
    * @returns {string|*} 如('张三', 23),('李四', 24)
    */
-  static getInsertSqlValues(data) {
+  getInsertSqlValues(data) {
     if (Array.isArray(data)) { // 传递过来的是数组
       return data.map(item => this.getInsertSqlValuesByObject(item)).join(',');
     } // 传递过来的是对象
@@ -67,7 +67,7 @@ class SQLUtil {
    * @param data 可能是Array类型, 也可能是Object类型
    * @returns {string}
    */
-  static getInsertSqlFileNames(data) {
+  getInsertSqlFileNames(data) {
     const templateObj = Array.isArray(data) ? data[0] : data;
     return `(${Object.keys(templateObj).toString()})`;
   }
@@ -77,10 +77,10 @@ class SQLUtil {
    * @param data
    * @returns {string}
    */
-  static getOnUpdateStr(data) {
+  getOnUpdateStr(data) {
     const templateObj = Array.isArray(data) ? data[0] : data;
     return Object.keys(templateObj).map(item => `${item}=values(${item})`).join();
   }
 }
 
-module.exports = SQLUtil;
+module.exports = new SQLUtil();

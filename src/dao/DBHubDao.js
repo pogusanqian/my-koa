@@ -1,6 +1,6 @@
 const { QueryTypes } = require('sequelize');
 const sequelize = require('./models');
-const SQLUtil = require('../util/SQLUtil');
+const sqlUtil = require('../util/sqlUtil');
 
 class DBHubDao {
   /**
@@ -8,11 +8,11 @@ class DBHubDao {
    * @param sql
    * @returns {Promise<[undefined, number]>}
    */
-  static async doSQL(sql) {
+  async doSQL(sql) {
     return await sequelize.query(sql);
   }
 
-  static async getdata(tableName) {
+  async getdata(tableName) {
     const sql = `SELECT * FROM ${tableName}`;
     return await sequelize.query(sql, { type: QueryTypes.SELECT });
   }
@@ -24,8 +24,8 @@ class DBHubDao {
    * @param date
    * @returns {Promise<[unknown[], unknown]>}
    */
-  static async insertDate(tableName, date) {
-    const sql = `INSERT INTO ${tableName} ${SQLUtil.getInsertSqlFileNames(date)} VALUES ${SQLUtil.getInsertSqlValues(date)}`;
+  async insertDate(tableName, date) {
+    const sql = `INSERT INTO ${tableName} ${sqlUtil.getInsertSqlFileNames(date)} VALUES ${sqlUtil.getInsertSqlValues(date)}`;
     return await sequelize.query(sql);
   }
 
@@ -36,10 +36,10 @@ class DBHubDao {
    * @param date
    * @returns {Promise<[undefined, number]>}
    */
-  static async insertOrUpdateByDublicateKey(tableName, date) {
-    const sql = `INSERT INTO ${tableName} ${SQLUtil.getInsertSqlFileNames(date)}
-        VALUES ${SQLUtil.getInsertSqlValues(date)}
-        ON DUPLICATE KEY UPDATE ${SQLUtil.getOnUpdateStr(date)};`;
+  async insertOrUpdateByDublicateKey(tableName, date) {
+    const sql = `INSERT INTO ${tableName} ${sqlUtil.getInsertSqlFileNames(date)}
+        VALUES ${sqlUtil.getInsertSqlValues(date)}
+        ON DUPLICATE KEY UPDATE ${sqlUtil.getOnUpdateStr(date)};`;
     return await sequelize.query(sql);
   }
 
@@ -51,15 +51,15 @@ class DBHubDao {
    * @param date
    * @returns {Promise<[undefined, number]>}
    */
-  static async insertOrUpdateByReplace(tableName, date) {
+  async insertOrUpdateByReplace(tableName, date) {
     const filesArr = await sequelize.query(`DESC ${tableName}`, { type: QueryTypes.SELECT });
     if (filesArr.length !== Object.keys(date[0]).length) {
       throw Error('调用insertOrUpdateByReplace批量更新数据是, 传递的data元素属性必须包含数据表的所有列, 不然会造成数据的丢失');
     }
-    const sql = `REPLACE INTO ${tableName} ${SQLUtil.getInsertSqlFileNames(date)}
-        VALUES ${SQLUtil.getInsertSqlValues(date)};`;
+    const sql = `REPLACE INTO ${tableName} ${sqlUtil.getInsertSqlFileNames(date)}
+        VALUES ${sqlUtil.getInsertSqlValues(date)};`;
     return await sequelize.query(sql);
   }
 }
 
-module.exports = DBHubDao;
+module.exports = new DBHubDao();

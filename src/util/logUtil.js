@@ -24,4 +24,4 @@ log4js.configure({
   },
 });
 
-module.exports = log4js.getLogger('dataFileOut');
+module.exports = log4js.getLogger('consoleOut');
