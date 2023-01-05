@@ -1,6 +1,6 @@
 const moment = require('moment');
 const { v4 } = require('uuid');
-const logger = require('../util/logUtil');
+const logger = require('../util/logger');
 
 module.exports = async (ctx, next) => {
   ctx.requestId = ctx.requestId || v4();
@@ -11,6 +11,6 @@ module.exports = async (ctx, next) => {
   logger.info(`${ctx.requestId}||请求Body: ${JSON.stringify(ctx.request.body)}`);
 
   await next();
-  
+
   logger.info(`${ctx.requestId}||响应参数:  ${JSON.stringify(ctx.body)}`);
 };

@@ -4,7 +4,7 @@ const KoaBody = require('koa-body');
 const router = require('./router');
 const loggerMiddleware = require('./middlewares/loggerMiddleware');
 const errorMiddleware = require('./middlewares/errorMiddleware');
-const logUtil = require('./util/logUtil');
+const logger = require('./util/logger');
 const cors = require('koa2-cors');
 
 const app = new Koa();
@@ -16,7 +16,7 @@ app.use(cors({
   credentials: true
 }));
 
-// 解析请求体数据
+// 引用body解析组件
 app.use(KoaBody({ multipart: true }));
 
 // 引用异常处理组件
@@ -29,12 +29,10 @@ app.use(loggerMiddleware);
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-// 添加异常监听事件; koa的error事件好像只能处理同步的异常; 另外就是如果try了同步异常, 则不会触发error事件
-app.on('error', err => logUtil.error(err.stack));
+// 添加异常监听事件
+app.on('error', err => logger.error(err.stack));
 
 app.listen(process.env.PORT, () => {
   console.info(`服务已经启动，访问：http://localhost:${process.env.PORT}`);
-  logUtil.info(`服务已经启动，访问：http://localhost:${process.env.PORT}`);
+  logger.info(`服务已经启动，访问：http://localhost:${process.env.PORT}`);
 });
-
-
