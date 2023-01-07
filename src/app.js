@@ -4,10 +4,13 @@ const KoaBody = require('koa-body');
 const router = require('./router');
 const loggerMiddleware = require('./middlewares/loggerMiddleware');
 const errorMiddleware = require('./middlewares/errorMiddleware');
-const logger = require('./util/logger');
 const cors = require('koa2-cors');
 
 const app = new Koa();
+
+// 设置全局变量
+global.logger = require('./util/logger');
+global.responseUtil = require('./util/responseUtil');
 
 // 设置跨域组件
 app.use(cors({

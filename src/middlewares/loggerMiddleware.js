@@ -1,6 +1,5 @@
 const moment = require('moment');
 const { v4 } = require('uuid');
-const logger = require('../util/logger');
 
 module.exports = async (ctx, next) => {
   ctx.requestId = ctx.requestId || v4();

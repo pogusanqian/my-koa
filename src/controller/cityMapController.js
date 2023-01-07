@@ -20,7 +20,7 @@ class CityMapController {
   }
 
   async updateCityMap(ctx) {
-    ctx.body =await cityMapDao.update(ctx.request.body);
+    ctx.body = await cityMapDao.update(ctx.request.body);
   }
 
 }
