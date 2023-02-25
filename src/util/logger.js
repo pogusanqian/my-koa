@@ -8,7 +8,7 @@ log4js.configure({
     },
     dataFileOut: {
       type: 'dateFile',
-      filename: process.env.LOGGER_FILE_PATH,
+      filename: process.env.LOG_FILE_PATH,
       layout: { type: 'colored' },
     },
   },
@@ -24,4 +24,4 @@ log4js.configure({
   },
 });
 
-module.exports = log4js.getLogger('consoleOut');
+module.exports = log4js.getLogger(process.env.LOG_CONSOLE === 'true' ? 'consoleOut' : 'dataFileOut');

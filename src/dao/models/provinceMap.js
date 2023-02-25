@@ -68,10 +68,10 @@ module.exports = sequelize => {
     }
   };
   const options = {
-    tableName: "city_map",
+    tableName: "province_map",
     comment: "",
     indexes: []
   };
-  const CityMapModel = sequelize.define("cityMapModel", attributes, options);
-  return CityMapModel;
+  const ProvinceMapModel = sequelize.define("provinceMapModel", attributes, options);
+  return ProvinceMapModel;
 };

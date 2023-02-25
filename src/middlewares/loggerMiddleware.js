@@ -1,4 +1,3 @@
-const moment = require('moment');
 const { v4 } = require('uuid');
 
 module.exports = async (ctx, next) => {

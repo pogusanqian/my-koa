@@ -8,12 +8,13 @@ module.exports = {
     dialect: 'mysql',
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-    logging: true,
+    logging: true
   },
   options: {
     type: 'js',
-    dir: 'models',
-    camelCase: false,
-    tables: ['t_city_map', 't_province_map'],
-  },
+    dir: '/Code/study/my-koa/src/dao/models',
+    camelCase: true,
+    fileNameCamelCase: true,
+    tables: ['province_map', 'city_map', 'district_map']
+  }
 };
