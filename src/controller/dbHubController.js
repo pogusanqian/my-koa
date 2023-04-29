@@ -1,5 +1,5 @@
 const dbHubDao = require('../dao/dbHubDao');
-const { Op } = require("sequelize");
+const { Op } = require('sequelize');
 
 class DBHubController {
   async create(ctx) {
@@ -44,15 +44,15 @@ class DBHubController {
   }
 
   async queryById(ctx) {
-    ctx.body = await dbHubDao.findOneById(ctx.params.tableName, ctx.params.id);
+    ctx.body = await dbHubDao.findOne(ctx.params.tableName, { where: { id: ctx.params.id } });
   }
 
   async updateById(ctx) {
-    ctx.body = await dbHubDao.updateById(ctx.params.tableName, ctx.request.body, ctx.params.id);
+    ctx.body = await dbHubDao.update(ctx.params.tableName, ctx.request.body, { where: { id: ctx.params.id } });
   }
 
   async destroyById(ctx) {
-    ctx.body = await dbHubDao.destroyById(ctx.params.tableName, ctx.params.id);
+    ctx.body = await dbHubDao.destroy(ctx.params.tableName, { where: { id: ctx.params.id } });
   }
 }
 

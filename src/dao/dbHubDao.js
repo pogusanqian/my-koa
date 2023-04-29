@@ -35,30 +35,6 @@ class DBHubDao {
   async destroy(tableName, options) {
     return await this.getModel(tableName).destroy(options);
   }
-
-  async findOneById(tableName, pkValue, pkFileName = 'id') {
-    return await this.getModel(tableName).findOne({
-      where: {
-        [pkFileName]: pkValue
-      }
-    });
-  }
-
-  async updateById(tableName, data, pkValue, pkFileName = 'id') {
-    return await this.getModel(tableName).update(data, {
-      where: {
-        [pkFileName]: pkValue
-      }
-    });
-  }
-
-  async destroyById(tableName, pkValue, pkFileName = 'id') {
-    return await this.getModel(tableName).destroy({
-      where: {
-        [pkFileName]: pkValue
-      }
-    });
-  }
 }
 
 module.exports = new DBHubDao();
