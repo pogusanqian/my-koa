@@ -4,7 +4,8 @@
   "description": "",
   "main": "./src/app.js",
   "scripts": {
-    "start": "nodemon ./src/app.js"
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js"
   },
   "keywords": [
     "node",
@@ -19,6 +20,7 @@
     "koa": "^2.14.1",
     "koa-body": "^6.0.1",
     "koa-router": "^12.0.0",
+    "koa-sslify": "^5.0.1",
     "koa2-cors": "^2.0.6",
     "log4js": "^6.8.0",
     "mysql2": "^3.1.2",
@@ -26,6 +28,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "nodemon": "^3.0.1",
     "sequelize-automate": "^1.2.2"
   }
 }

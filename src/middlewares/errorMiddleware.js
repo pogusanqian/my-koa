@@ -1,9 +1,13 @@
-const { CODE: { SUCCESS, FAIL }} = require('../config');
+const { CODE } = require('../config');
 
 module.exports = async (ctx, next) => {
   try {
     await next();
-    ctx.body = { code: SUCCESS.code, message: SUCCESS.message, data: ctx.body };
+    ctx.body = {
+      code: CODE.SUCCESS.code,
+      message: CODE.SUCCESS.message,
+      data: ctx.body
+    };
   } catch (e) {
     const isKoaError = Number.isInteger(e.status) && Number(e.status) >= 100 && Number(e.status) <= 999;
     if (isKoaError) {
@@ -15,7 +19,7 @@ module.exports = async (ctx, next) => {
     } else {
       // 隐藏未知异常, 只返回一个通用的状态码信息
       logger.error(e);
-      ctx.body = FAIL;
+      ctx.body = CODE.FAIL;
     }
   }
 };
